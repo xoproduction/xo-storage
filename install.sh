@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # XO Enterprise Storage Server — Installer (Linux / macOS)
 # Cara pakai:
-#   bash <(curl -fsSL https://raw.githubusercontent.com/xoenterprise/xo-storage/main/install.sh)
+# bash <(curl -fsSL https://raw.githubusercontent.com/xoproduction/xo-storage/main/install.sh)
 
 set -e
 
-REPO="https://raw.githubusercontent.com/xoenterprise/xo-storage/main"
+REPO="https://raw.githubusercontent.com/xoproduction/xo-storage/main"
 DIR="$HOME/xo-storage"
 
 echo ""

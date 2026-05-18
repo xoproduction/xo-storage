@@ -12,7 +12,7 @@ Pilih sesuai sistem operasi Anda:
 ### Windows (PowerShell)
 
 ```powershell
-irm https://raw.githubusercontent.com/xoenterprise/xo-storage/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/xoproduction/xo-storage/main/install.ps1 | iex
 ```
 
 > Buka **PowerShell** (bukan CMD), paste perintah di atas, tekan Enter.
@@ -20,7 +20,7 @@ irm https://raw.githubusercontent.com/xoenterprise/xo-storage/main/install.ps1 |
 ### Linux / macOS (Terminal)
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/xoenterprise/xo-storage/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/xoproduction/xo-storage/main/install.sh)
 ```
 
 ---

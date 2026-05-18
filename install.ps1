@@ -1,8 +1,8 @@
 # XO Enterprise Storage Server — Installer (Windows PowerShell)
 # Cara pakai (paste ke PowerShell):
-#   irm https://raw.githubusercontent.com/xoenterprise/xo-storage/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/xoproduction/xo-storage/main/install.ps1 | iex
 
-$REPO = "https://raw.githubusercontent.com/xoenterprise/xo-storage/main"
+$REPO = "https://raw.githubusercontent.com/xoproduction/xo-storage/main"
 $DIR  = "$env:USERPROFILE\xo-storage"
 
 Write-Host ""
