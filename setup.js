@@ -37,9 +37,14 @@ async function main() {
   const portInput = await ask(rl, "Port server (tekan Enter untuk default 4500): ");
   const port = parseInt(portInput.trim(), 10) || 4500;
 
-  // IP/domain
-  const hostInput = await ask(rl, "IP publik atau domain server ini (contoh: 192.168.1.100 atau mycompany.com): ");
-  const host = hostInput.trim() || "localhost";
+  // BASE_URL — tanya full URL publik
+  console.log("");
+  console.log("Base URL publik server ini.");
+  console.log("  Jika pakai Cloudflare Tunnel / domain: masukkan https://storage.domainmu.com");
+  console.log("  Jika akses langsung via IP lokal     : masukkan http://192.168.1.100:" + port);
+  console.log("");
+  const baseUrlInput = await ask(rl, "Base URL publik (contoh: https://storage.xostore.id): ");
+  const baseUrl = (baseUrlInput.trim() || "http://localhost:" + port).replace(/\/+$/, "");
 
   // Storage dir
   const dirInput = await ask(rl, "Folder penyimpanan file (Enter = ./uploads): ");
@@ -55,7 +60,7 @@ async function main() {
     `PORT=${port}`,
     `TOKEN=${token}`,
     `STORAGE_DIR=${storageDir}`,
-    `BASE_URL=http://${host}:${port}`,
+    `BASE_URL=${baseUrl}`,
     `MAX_FILE_MB=50`,
     `TLS_KEY=`,
     `TLS_CERT=`,
@@ -70,7 +75,7 @@ async function main() {
     console.log(`\nFolder '${absDirInput}' dibuat.`);
   }
 
-  const url = `http://${host}:${port}/xo-storage/${token}`;
+  const url = `${baseUrl}/xo-storage/${token}`;
 
   console.log("\n========================================");
   console.log("  Setup selesai!");
