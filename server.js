@@ -23,6 +23,15 @@ const fs      = require("fs");
 const path    = require("path");
 const express = require("express");
 
+// ── Auto-load .env jika ada (tanpa memerlukan package dotenv) ────────────────
+const ENV_FILE = path.join(__dirname, ".env");
+if (fs.existsSync(ENV_FILE)) {
+  fs.readFileSync(ENV_FILE, "utf8").split("\n").forEach(line => {
+    const m = line.trim().match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim();
+  });
+}
+
 // ─── KONFIGURASI ────────────────────────────────────────────────────────────
 const CONFIG = {
   PORT:        process.env.PORT        || 4500,
@@ -80,7 +89,11 @@ function extFromContentType(ct) {
 
 // ── Helper: base URL untuk membentuk URL file yang dikembalikan ──────────────
 function getBaseUrl(req) {
-  if (CONFIG.BASE_URL) return CONFIG.BASE_URL.replace(/\/+$/, "");
+  let base = CONFIG.BASE_URL ? CONFIG.BASE_URL.replace(/\/+$/, "") : "";
+  if (base && !base.startsWith("http://") && !base.startsWith("https://")) {
+    base = "https://" + base; // auto-add scheme jika user lupa
+  }
+  if (base) return base;
   const proto = req.headers["x-forwarded-proto"] || (req.secure ? "https" : "http");
   return proto + "://" + req.headers.host;
 }
