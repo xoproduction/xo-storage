@@ -36,7 +36,7 @@ if (fs.existsSync(ENV_FILE)) {
 const CONFIG = {
   PORT:        process.env.PORT        || 4500,
   TOKEN:       process.env.TOKEN       || "ganti-token-ini-dengan-string-acak",
-  STORAGE_DIR: process.env.STORAGE_DIR || path.join(__dirname, "uploads"),
+  STORAGE_DIR: path.resolve(process.env.STORAGE_DIR || path.join(__dirname, "uploads")),
   BASE_URL:    process.env.BASE_URL    || "",   // kosongkan = auto-detect dari request Host
   MAX_FILE_MB: parseInt(process.env.MAX_FILE_MB || "50", 10),
 
